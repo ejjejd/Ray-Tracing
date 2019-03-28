@@ -131,6 +131,7 @@
     <ClInclude Include="src\core\light.h" />
     <ClInclude Include="src\core\material.h" />
     <ClInclude Include="src\core\ray.h" />
+    <ClInclude Include="src\core\render\cast_ray.h" />
     <ClInclude Include="src\shapes\shape.h" />
     <ClInclude Include="src\shapes\sphere.h" />
   </ItemGroup>
