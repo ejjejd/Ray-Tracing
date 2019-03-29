@@ -1,4 +1,4 @@
 ﻿  main.cpp
-i:\ray-tracing\raytracing\raytracing\src\main.cpp(37): warning C4305: 'argument': truncation from 'double' to 'const float'
-i:\ray-tracing\raytracing\raytracing\src\main.cpp(48): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+i:\ray-tracing\raytracing\raytracing\src\main.cpp(40): warning C4305: 'argument': truncation from 'double' to 'const float'
+i:\ray-tracing\raytracing\raytracing\src\main.cpp(51): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
   RayTracing.vcxproj -> I:\Ray-Tracing\RayTracing\bin\Debug-x64\RayTracing.exe

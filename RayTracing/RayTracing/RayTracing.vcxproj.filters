@@ -41,5 +41,8 @@
     <ClInclude Include="src\core\render\cast_ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\shapes\plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
