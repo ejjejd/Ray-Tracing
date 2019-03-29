@@ -135,6 +135,10 @@
     <ClInclude Include="src\shapes\plane.h" />
     <ClInclude Include="src\shapes\shape.h" />
     <ClInclude Include="src\shapes\sphere.h" />
+    <ClInclude Include="src\stb_image\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\env.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

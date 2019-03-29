@@ -7,7 +7,8 @@
 
 #include <vector>
 
-glm::vec3 environmentColor = glm::vec3(0.5f, 0.7f, 0.8f);
+std::vector<glm::vec3> evironmentMap;
+int envWidth, envHeight;
 
 struct Hit
 {
@@ -31,10 +32,12 @@ bool SceneIntersection(const Ray ray, const std::vector<Shape*> shapes, Hit& hit
 			hit.point = ray.PointAt(distance);
 			hit.normal = glm::normalize(shapes[i]->Normal(hit.point));
 			hit.material = shapes[i]->Material;
+
+			return true;
 		}
 	}
 
-	return distance < 1000.0f;
+	return false;
 }
 
 glm::vec3 CastRay(const Ray ray, const std::vector<Shape*> shapes, std::vector<Light> lights, const int depth = 0)
@@ -42,7 +45,12 @@ glm::vec3 CastRay(const Ray ray, const std::vector<Shape*> shapes, std::vector<L
 	Hit hit;
 
 	if (depth > 4 || !SceneIntersection(ray, shapes, hit))
-		return environmentColor;
+	{
+		int u = glm::max(0, glm::min(envWidth - 1, static_cast<int>((atan2(ray.Direction.z, ray.Direction.x) / (2 * M_PI) + .5) * envWidth)));
+		int v = glm::max(0, glm::min(envHeight - 1, static_cast<int>(acos(ray.Direction.y) / M_PI * envHeight)));
+
+		return evironmentMap[u + v * envWidth];
+	}
 
 	Ray reflectRay;
 	reflectRay.Direction = glm::normalize(glm::reflect(ray.Direction, hit.normal));
