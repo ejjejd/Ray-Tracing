@@ -44,15 +44,16 @@ glm::vec3 CastRay(const Ray ray, const std::vector<Shape*> shapes, std::vector<L
 	if (!SceneIntersection(ray, shapes, hit))
 		return environmentColor;
 
-	glm::vec3 diffuse;
-	glm::vec3 lighDir;
+	float diffuse = 0.0f;
+	float specular = 0.0f;
 
 	for (int i = 0; i < lights.size(); ++i)
 	{
-		lighDir = glm::normalize(lights[i].Position - hit.point);
+		glm::vec3 lightDir = glm::normalize((lights[i].Position - hit.point));
 
-		diffuse = hit.material.Diffuse * (lights[i].Intensity * glm::max(0.0f, glm::dot(lighDir, hit.normal)));
+		diffuse += lights[i].Intensity * glm::max(0.0f, glm::dot(lightDir, hit.normal));
+		specular += powf(glm::max(0.0f, glm::dot(-glm::reflect(-lightDir, hit.normal), ray.Direction)), hit.material.Shininess) * lights[i].Intensity;
 	}
 
-	return diffuse;
+	return hit.material.Diffuse * diffuse * hit.material.Albedo[0] + glm::vec3(1.0f, 1.0f, 1.0f) * specular * hit.material.Albedo[1];
 }
