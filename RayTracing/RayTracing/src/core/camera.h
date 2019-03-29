@@ -22,7 +22,7 @@ public:
 		Position = position;
 		Resolution = glm::vec2(width, height);
 		AspectRatio = Resolution.x / Resolution.y;
-		FOV = glm::tan(glm::radians(fov) / 2.0f);
+		FOV = glm::tan(fov / 2.0f);
 	}
 
 	Ray GetRay(const int ix, const float iy)

@@ -17,12 +17,14 @@ void Render()
 	Material ivory(glm::vec3(0.4f, 0.4f, 0.3f), glm::vec3(0.6, 0.3, 0.2), 50.0f);
 	Material red(glm::vec3(0.5f, 0.1f, 0.1f), glm::vec3(0.9f, 0.0f, 0.0f), 10.0f);
 	Material green(glm::vec3(0.1f, 0.5f, 0.1f), glm::vec3(0.6, 0.3, 0.2), 50.0f);
+	Material mirror(glm::vec3(1.0, 1.0, 1.0), glm::vec3(0.0, 10.0, 0.8), 1425.0f);
 
 	std::vector<Shape*> shapes
 	{
-		(new Sphere(glm::vec3(0.0f, 0.0f, -22.0f), 5.5f, ivory)),
-		(new Sphere(glm::vec3(11.0f, -1.5f, -22.0f), 4.0f, green)),
-		(new Sphere(glm::vec3(-11.0f, -1.5f, -22.0f), 4.0f, red))
+		(new Sphere(glm::vec3(0.0f, 0.0f, -25.0f), 5.5f, ivory)),
+		(new Sphere(glm::vec3(11.0f, -1.5f, -25.0f), 4.0f, green)),
+		(new Sphere(glm::vec3(-11.0f, -1.5f, -25.0f), 4.0f, red)),
+		(new Sphere(glm::vec3(0.0f, 11.0f, -30.0f), 3.0f, mirror))
 	};
 
 	std::vector<Light> lights
@@ -39,24 +41,11 @@ void Render()
 
 	glm::vec3 pixel;
 
-	float fov = M_PI / 2.0f;
-	float fovADJ = tan(fov / 2.0f);
-
-	float aspectRatio = (float)WIDTH / HEIGHT;
-
-	Ray ray;
-	ray.Origin = glm::vec3(0.0f, 0.0f, 0.0f);
-
 	for (int j = 0; j < HEIGHT; ++j)
 	{
 		for (int i = 0; i < WIDTH; ++i)
 		{
-			float x = (2.0f * (i + 0.5f) / (float)WIDTH - 1) * fovADJ * aspectRatio;
-			float y = -(2.0f * (j + 0.5f) / (float)HEIGHT - 1) * fovADJ;
-
-			ray.Direction = glm::normalize(glm::vec3(x, y, -1.0f));
-
-			pixel = CastRay(ray, shapes, lights);
+			pixel = CastRay(camera.GetRay(i, j), shapes, lights);
 
 			for (int t = 0; t < 3; ++t)
 				out << (unsigned char)(glm::max(0.0f, glm::min(1.0f, pixel[t])) * 255.0f);
