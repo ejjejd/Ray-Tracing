@@ -132,12 +132,15 @@
     <ClInclude Include="src\core\material.h" />
     <ClInclude Include="src\core\ray.h" />
     <ClInclude Include="src\core\render\cast_ray.h" />
+    <ClInclude Include="src\image.h" />
     <ClInclude Include="src\shapes\plane.h" />
     <ClInclude Include="src\shapes\shape.h" />
     <ClInclude Include="src\shapes\sphere.h" />
-    <ClInclude Include="src\stb_image\stb_image.h" />
+    <ClInclude Include="src\stb_image\stb_image_read.h" />
+    <ClInclude Include="src\stb_image\stb_image_write.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="out.jpg" />
     <Image Include="res\env.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

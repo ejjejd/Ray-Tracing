@@ -44,12 +44,21 @@
     <ClInclude Include="src\shapes\plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\stb_image\stb_image.h">
+    <ClInclude Include="src\stb_image\stb_image_write.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image\stb_image_read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\env.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="out.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

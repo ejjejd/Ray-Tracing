@@ -4,11 +4,11 @@
 #include "../material.h"
 #include "../light.h"
 #include "../../shapes/shape.h"
+#include "../../image.h"
 
 #include <vector>
 
-std::vector<glm::vec3> evironmentMap;
-int envWidth, envHeight;
+Image evironment;
 
 struct Hit
 {
@@ -46,10 +46,10 @@ glm::vec3 CastRay(const Ray ray, const std::vector<Shape*> shapes, std::vector<L
 
 	if (depth > 4 || !SceneIntersection(ray, shapes, hit))
 	{
-		int u = glm::max(0, glm::min(envWidth - 1, static_cast<int>((atan2(ray.Direction.z, ray.Direction.x) / (2 * M_PI) + .5) * envWidth)));
-		int v = glm::max(0, glm::min(envHeight - 1, static_cast<int>(acos(ray.Direction.y) / M_PI * envHeight)));
+		int u = glm::max(0, glm::min(evironment.Width - 1, static_cast<int>((atan2(ray.Direction.z, ray.Direction.x) / (2 * M_PI) + .5) * evironment.Width)));
+		int v = glm::max(0, glm::min(evironment.Height - 1, static_cast<int>(acos(ray.Direction.y) / M_PI * evironment.Height)));
 
-		return evironmentMap[u + v * envWidth];
+		return evironment.Data[u + v * evironment.Width];
 	}
 
 	Ray reflectRay;
